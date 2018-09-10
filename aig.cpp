@@ -6,6 +6,14 @@
 //------------------AndNode------------------
 AndNode::AndNode(){}
 
+void AndNode::setName(string newName){
+    this->name = newName;
+}
+
+string AndNode::getName(){
+    return this->name;
+}
+
 AigNodeType AndNode::getType(){
     return AND_NODE;
 }

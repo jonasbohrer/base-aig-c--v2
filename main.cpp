@@ -4,11 +4,9 @@
 
 using namespace std;
 
-int main()
-{
-    /*AAGReader reader("C17.aag");
-    Aig* aig = reader.readFile();*/
-    
+int main(int argc, char* argv[])
+{  
+    /*
     Aig* aig = new Aig();
     aig->setName("C17");
 
@@ -68,6 +66,12 @@ int main()
 
     aig->insertOutputNode(out1); aig->insertNode(out1);
     aig->insertOutputNode(out2); aig->insertNode(out2);
+    */
+
+    string filename = argv[1];
+    AAGReader* reader = new AAGReader(filename);
+    
+    Aig* aig= reader->readFile();
 
     //debuging
     cout << "# name of AIG: " << aig->getName() << "\n";
@@ -75,10 +79,6 @@ int main()
     cout << "  * number of Inputs:  " << aig->getInputs().size() << "\n";
     cout << "  * number of Outputs: " << aig->getOutputs().size() << "\n";
     cout << "  * number of Ands: " << aig->getNodes().size()-aig->getInputs().size()-aig->getOutputs().size() << "\n";
-
-    AAGReader* reader = new AAGReader("C17.aag");
-
-    reader->readFile();
 
     return EXIT_SUCCESS;
 }

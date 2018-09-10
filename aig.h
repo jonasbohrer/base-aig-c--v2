@@ -31,6 +31,7 @@ public:
 
 class AndNode:public AigNode {
 private:
+    string name;
     AigNode* in0;
     AigNode* in1;
     bool in0Inverted;
@@ -41,6 +42,8 @@ private:
 
 public:
     AndNode();
+    void setName(string);
+    string getName();
     AigNodeType getType();
     void connectTo(AigNode*, int, int);
     AigNode* getFanIn(int);
