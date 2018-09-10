@@ -52,28 +52,61 @@ Aig* AAGReader::readFile()
 
     //treating inputs
     for (int i = 0; i < nInputs; i++) {
-        debug << "read the input" << i << " from the file\n";
-        debug << "   create in" << i << " and add it to an input list and the all nodes list\n";
-        std::ostringstream ss;
-        ss << "in" << i;
-        ins[i].setName(ss.str());
+        //debug << "read the input" << i << " from the file\n";
+        //debug << "   create in" << i << " and add it to an input list and the all nodes list\n";
+
+        source.getline(buf, 250, '\n');
+        string s=buf;
+        istringstream line;
+        line.str(s);
+        line >> word;
+
+        debug << "   in" << word << " \n";
+
+        //Real part
+        ins[i].setName(word);
     }
 
     //treating outputs
     debug << "\n";
     for (int i = 0; i < nOutputs; i++) {
-        debug << "read the output" << i << " from the file\n";
-        debug << "   create out" << i << " and add it to an output list and the all nodes list\n";
-        std::ostringstream ss;
-        ss << "out" << i;
-        outs[i].setName(ss.str());
+        //debug << "read the output" << i << " from the file\n";
+        //debug << "   create out" << i << " and add it to an output list and the all nodes list\n";
+        //std::ostringstream ss;
+        //ss << "o" << i;
+        //outs[i].setName(ss.str());
+
+        source.getline(buf, 250, '\n');
+        string s=buf;
+        istringstream line;
+        line.str(s);
+        line >> word;
+
+        debug << "   out" << word << " \n";
+
+        //Real part
+        outs[i].setName(word);
     }
 
     //connecting ands
     debug << "\n";
     for (int i = 0; i < nAnds; i++) {
         debug << "read the and" << i << " output and inputs\n";
-        debug << "   connect the and" << i << " and set the inversion of this pins\n";
+        //debug << "   connect the and" << i << " and set the inversion of this pins\n";
+
+        source.getline(buf, 250, '\n');
+        string s=buf;
+        istringstream line;
+        line.str(s);
+        line >> word;
+
+        debug << "   and" << word << " ";
+        line >> word;
+        debug << "   " << word << " ";
+        line >> word;
+        debug << "   " << word << " \n";
+
+        //Real part
     }
 
     debug << "\n";
