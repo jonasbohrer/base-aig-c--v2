@@ -78,7 +78,23 @@ int main(int argc, char* argv[])
     cout << "  * number of Nodes:   " << aig->getNodes().size() << "\n";
     cout << "  * number of Inputs:  " << aig->getInputs().size() << "\n";
     cout << "  * number of Outputs: " << aig->getOutputs().size() << "\n";
-    cout << "  * number of Ands: " << aig->getNodes().size()-aig->getInputs().size()-aig->getOutputs().size() << "\n";
+    cout << "  * number of Ands: " << aig->getNodes().size()-aig->getInputs().size() << "\n";
 
+    cout << "\n ins:  ";
+    for(AigNode* node : aig->getInputs()){
+        cout << ((InputNode*) node)->getName() << " ";
+    }
+    cout << "\n outs: ";
+    for(AigNode* node : aig->getOutputs()){
+        cout << ((OutputNode*) node)->getName() << " ";
+    }
+    cout << "\n ands: ";
+    for(AigNode* node : aig->getNodes()){
+        if (node->getType() == AND_NODE) {
+            cout << ((AndNode*) node)->getName() << " ";
+        }
+    }
+    //End of debugging
+    
     return EXIT_SUCCESS;
 }
