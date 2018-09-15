@@ -1,0 +1,93 @@
+aag 166 36 0 7 130
+The file header is ok!
+
+read the input0 from the file
+   create in0 and add it to an input list and the all nodes list
+read the input1 from the file
+   create in1 and add it to an input list and the all nodes list
+read the input2 from the file
+   create in2 and add it to an input list and the all nodes list
+read the input3 from the file
+   create in3 and add it to an input list and the all nodes list
+read the input4 from the file
+   create in4 and add it to an input list and the all nodes list
+read the input5 from the file
+   create in5 and add it to an input list and the all nodes list
+read the input6 from the file
+   create in6 and add it to an input list and the all nodes list
+read the input7 from the file
+   create in7 and add it to an input list and the all nodes list
+read the input8 from the file
+   create in8 and add it to an input list and the all nodes list
+read the input9 from the file
+   create in9 and add it to an input list and the all nodes list
+read the input10 from the file
+   create in10 and add it to an input list and the all nodes list
+read the input11 from the file
+   create in11 and add it to an input list and the all nodes list
+read the input12 from the file
+   create in12 and add it to an input list and the all nodes list
+read the input13 from the file
+   create in13 and add it to an input list and the all nodes list
+read the input14 from the file
+   create in14 and add it to an input list and the all nodes list
+read the input15 from the file
+   create in15 and add it to an input list and the all nodes list
+read the input16 from the file
+   create in16 and add it to an input list and the all nodes list
+read the input17 from the file
+   create in17 and add it to an input list and the all nodes list
+read the input18 from the file
+   create in18 and add it to an input list and the all nodes list
+read the input19 from the file
+   create in19 and add it to an input list and the all nodes list
+read the input20 from the file
+   create in20 and add it to an input list and the all nodes list
+read the input21 from the file
+   create in21 and add it to an input list and the all nodes list
+read the input22 from the file
+   create in22 and add it to an input list and the all nodes list
+read the input23 from the file
+   create in23 and add it to an input list and the all nodes list
+read the input24 from the file
+   create in24 and add it to an input list and the all nodes list
+read the input25 from the file
+   create in25 and add it to an input list and the all nodes list
+read the input26 from the file
+   create in26 and add it to an input list and the all nodes list
+read the input27 from the file
+   create in27 and add it to an input list and the all nodes list
+read the input28 from the file
+   create in28 and add it to an input list and the all nodes list
+read the input29 from the file
+   create in29 and add it to an input list and the all nodes list
+read the input30 from the file
+   create in30 and add it to an input list and the all nodes list
+read the input31 from the file
+   create in31 and add it to an input list and the all nodes list
+read the input32 from the file
+   create in32 and add it to an input list and the all nodes list
+read the input33 from the file
+   create in33 and add it to an input list and the all nodes list
+read the input34 from the file
+   create in34 and add it to an input list and the all nodes list
+read the input35 from the file
+   create in35 and add it to an input list and the all nodes list
+
+read the output0 from the file
+   create out0 and add it to an output list and the all nodes list
+read the output1 from the file
+   create out1 and add it to an output list and the all nodes list
+read the output2 from the file
+   create out2 and add it to an output list and the all nodes list
+read the output3 from the file
+   create out3 and add it to an output list and the all nodes list
+read the output4 from the file
+   create out4 and add it to an output list and the all nodes list
+read the output5 from the file
+   create out5 and add it to an output list and the all nodes list
+read the output6 from the file
+   create out6 and add it to an output list and the all nodes list
+
+
+the comments began. Ignore the file from here!

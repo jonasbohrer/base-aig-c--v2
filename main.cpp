@@ -95,32 +95,36 @@ int main(int argc, char* argv[])
     
     Aig* aig= reader->readFile();
 
-    //debuging
-    cout << "# name of AIG: " << aig->getName() << "\n";
-    cout << "  * number of Nodes:   " << aig->getNodes().size() + aig->getInputs().size() << "\n";
-    cout << "  * number of Inputs:  " << aig->getInputs().size() << "\n";
-    cout << "  * number of Outputs: " << aig->getOutputs().size() << "\n";
-    cout << "  * number of Ands: " << aig->getNodes().size() << "\n";
+    //AIG Summary
+    cout << "\n# Name of AIG: " << aig->getName() << "\n";
+    cout << "  * Number of Nodes:   " << aig->getNodes().size() + aig->getInputs().size() << "\n";
+    cout << "  * Number of Inputs:  " << aig->getInputs().size() << "\n";
+    cout << "  * Number of Outputs: " << aig->getOutputs().size() << "\n";
+    cout << "  * Number of Ands: " << aig->getNodes().size() << "\n";
 
-    cout << "\n ins:  ";
+    cout << "\n  * Inputs:  ";
     for(AigNode* node : aig->getInputs()){
         cout << ((InputNode*) node)->getName() << " ";
     }
-    cout << "\n outs: ";
+    cout << "\n  * Outputs: ";
     for(AigNode* node : aig->getOutputs()){
         cout << ((OutputNode*) node)->getName() << " ";
     }
-    cout << "\n ands: ";
+    cout << "\n  * Ands: ";
     for(AigNode* node : aig->getNodes()){
         if (node->getType() == AND_NODE) {
             cout << ((AndNode*) node)->getName() << " ";
         }
     }
-    //End of debugging
+
+    //Depth Computation:
+    cout << "\n\n# Depth Computation: ";
 
     for (AigNode* node : aig->getOutputs()){
-        cout << "\nNode " << node->getName() << " depth: " << compute_depth(node);
+        cout << "\n  * Node " << node->getName() << " depth: " << compute_depth(node);
     }
+
+    cout << "\n";
 
     return EXIT_SUCCESS;
 }
