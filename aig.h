@@ -18,8 +18,11 @@ typedef enum {
 class AigNode {
 private:
     int ID;
+    string name;
 
 public: 
+    virtual void setName(string) = 0;
+    virtual string getName() = 0;
     virtual AigNodeType getType() = 0;
     virtual void connectTo(AigNode*, int, int) = 0;
     virtual AigNode* getFanIn(int) = 0;

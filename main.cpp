@@ -68,17 +68,19 @@ int main(int argc, char* argv[])
     aig->insertOutputNode(out2); aig->insertNode(out2);
     */
 
-    string filename = argv[1];
+    string filename;
+    if (argv[1] != NULL){filename = argv[1];} else {filename = "C17.aag";}
+
     AAGReader* reader = new AAGReader(filename);
     
     Aig* aig= reader->readFile();
 
     //debuging
     cout << "# name of AIG: " << aig->getName() << "\n";
-    cout << "  * number of Nodes:   " << aig->getNodes().size() << "\n";
+    cout << "  * number of Nodes:   " << aig->getNodes().size() + aig->getInputs().size() << "\n";
     cout << "  * number of Inputs:  " << aig->getInputs().size() << "\n";
     cout << "  * number of Outputs: " << aig->getOutputs().size() << "\n";
-    cout << "  * number of Ands: " << aig->getNodes().size()-aig->getInputs().size() << "\n";
+    cout << "  * number of Ands: " << aig->getNodes().size() << "\n";
 
     cout << "\n ins:  ";
     for(AigNode* node : aig->getInputs()){

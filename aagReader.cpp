@@ -81,15 +81,6 @@ Aig* AAGReader::readFile()
 
         outs[i].setName(word);
 
-        if (isInverted(stoi(word))) {
-            word = to_string(stoi(word) -1);
-            preouts[i].setName(word);
-            preouts[i].connectTo(&outs[i], 0, isInverted(stoi(word)));
-        } else {
-            preouts[i].setName(word);
-            preouts[i].connectTo(&outs[i], 0, isInverted(stoi(word)));
-        }
-
         //nodes[total] = &preouts[i];
     }
 
@@ -107,30 +98,27 @@ Aig* AAGReader::readFile()
         ands[i].setName(word);
         nodes[total] = &ands[i];
 
-        //cout << " line:" << total << " and:" << word;
+        //cout << " line:" << total << " and:" << ands[i].getName();
 
         // Get node connection #1
         line >> word;
-        //cout << ("%d", stoi(word));
+
         AigNode* node1;
         if (isInverted(stoi(word))) {node1 = findNode(to_string(stoi(word) -1), nodes, total);}
         else {node1 = findNode(word, nodes, total);}
 
-        ands[i].setFanIn(0, node1, isInverted(stoi(word)));
         node1->connectTo(&ands[i], 0, isInverted(stoi(word)));
-
-        //cout << " in1:" << word;
+        //cout << " in1:" << node1->getName();
 
         // Get node connection #2
         line >> word;
-        //cout << ("%d", stoi(word));
+
         AigNode* node2;
         if (isInverted(stoi(word))) {node2 = findNode(to_string(stoi(word) -1), nodes, total);}
         else {node2 = findNode(word, nodes, total);}
-        ands[i].setFanIn(1, node2, isInverted(stoi(word)));
-        node2->connectTo(&ands[i], 1, isInverted(stoi(word)));
 
-        //cout << " in2:" << word << "\n";
+        node2->connectTo(&ands[i], 1, isInverted(stoi(word)));
+        //cout << " in2:" << node2->getName() << "\n";
     }
 
     debug << "\n";
@@ -155,34 +143,52 @@ Aig* AAGReader::readFile()
         }
     }
     
+    //Adding Input and And nodes to AIG
     debug << "\ncreate the AIG and add all nodes\n";
 
     Aig *aig_final = new Aig();
     aig_final->setName(aigname);
 
     for(int i =0; i<nNodes;i++) {
-        aig_final->insertNode(nodes[i]);
         switch(nodes[i]->getType()){
             case INPUT_NODE: aig_final->insertInputNode(nodes[i]);
                 break;
+            case AND_NODE: aig_final->insertNode(nodes[i]);
+                break;
             case OUTPUT_NODE: break;
-            case AND_NODE: break;
         }
     }
 
-    AigNode** out_nodes = new AigNode*[nOutputs];
-
+    //Connecting Output nodes to And nodes
     for(int i =0; i<nOutputs;i++) {
-        out_nodes[i] = &outs[i];
-
+        aig_final->insertOutputNode(&outs[i]);
+        
+        word = outs[i].getName();
         AigNode* node1;
 
-        if (isInverted(stoi(outs[i].getName()))) {node1 = findNode(to_string(stoi(outs[i].getName()) -1), nodes, total);}
-        else {node1 = findNode(outs[i].getName(), nodes, total);}
+        if (isInverted(stoi(word))) {
+            word = to_string(stoi(word) -1);
+            node1 = findNode(word, nodes, total);
+            node1->connectTo(&outs[i], 0, isInverted(stoi(word)));
+        } else {
+            node1 = findNode(word, nodes, total);
+            node1->connectTo(&outs[i], 0, isInverted(stoi(word)));
+        }
 
-        node1->connectTo(out_nodes[i], 0, isInverted(stoi(outs[i].getName())));
+        /*
+        cout << " output node:" << outs[i].getName();;
+        cout << " - fanIn node:" << node1->getName();
 
-        aig_final->insertOutputNode(out_nodes[i]);
+        cout << " - fanIn node fanOuts:";
+        for (AigNode* node : (node1->getFanOut())) {
+            cout << " " << node->getName();
+        }
+        cout << "\n";
+        cout << " - fanIn node fanIns:";
+        cout << " " << (node1->getFanIn(0))->getName();
+        cout << " " << (node1->getFanIn(1))->getName();
+        cout << "\n";
+        */
     }
 
     debug << "return the AIG";
