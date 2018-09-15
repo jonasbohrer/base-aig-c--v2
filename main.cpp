@@ -4,6 +4,26 @@
 
 using namespace std;
 
+int compute_depth(AigNode* n1) {
+
+    //cout << "\nnode: " << n1->getName();
+    switch (n1->getType()) {
+        case INPUT_NODE: {
+            return 0;
+            break;}
+        case AND_NODE: {
+            int depthIn1 = compute_depth (n1->getFanIn(1));
+            int depthIn0 = compute_depth (n1->getFanIn(0));
+            return max(depthIn1, depthIn0)+1;
+            break;}
+        case OUTPUT_NODE: {
+            int depthIn0 = compute_depth (n1->getFanIn(0));
+            return depthIn0;
+            break;}
+        default: break;
+    }
+}
+
 int main(int argc, char* argv[])
 {  
     /*
@@ -97,6 +117,10 @@ int main(int argc, char* argv[])
         }
     }
     //End of debugging
-    
+
+    for (AigNode* node : aig->getOutputs()){
+        cout << "\nNode " << node->getName() << " depth: " << compute_depth(node);
+    }
+
     return EXIT_SUCCESS;
 }
