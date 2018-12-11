@@ -1,7 +1,9 @@
 
+Projeto para a disciplina de CAD. Baseado no cÃ³digo original do professor.
+
 URL do projeto: https://github.com/jonasbohrer/base-aig-c--v2
 
-**** Instruções de compilação *******************************
+**** InstruÃ§Ãµes de compilaÃ§Ã£o *******************************
 
 Usando g++:
 
